@@ -6,7 +6,7 @@ const { useState, useEffect } = React;
 ============================================================ */
 function refreshIcons() {
   if (window.lucide && window.lucide.createIcons) {
-    window.lucide.createIcons({ attrs: { 'stroke-width': 1.6 } });
+    window.lucide.createIcons({ attrs: { 'stroke-width': 1.6 h} });
   }
 }
 
@@ -20,30 +20,40 @@ function LeadForm({ c, variant }) {
   const [agree, setAgree] = useState(false);
   useEffect(refreshIcons);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (!agree) return;
     const f = e.target;
     const get = (n) => (f.elements[n] && f.elements[n].value || '').trim();
-    const nome = get('nome');
-    const tel = get('telefone');
-    const email = get('email');
-    const tipo = get('tipo');
-    const faixa = get('faixa');
-    const subject = `Solicitação de análise — Edital PGFN 6/2026`;
-    const body =
-      `Solicitação de análise de elegibilidade — Edital PGFN nº 6/2026\n\n` +
-      `Nome: ${nome}\n` +
-      `WhatsApp / telefone: ${tel}\n` +
-      `E-mail: ${email}\n` +
-      `Tipo de contribuinte: ${tipo}\n` +
-      `Faixa do débito: ${faixa}\n\n` +
-      `Estou ciente de que esta página é informativa e de que a análise do caso concreto é indispensável.`;
-    window.location.href =
-      `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    const payload = {
+      access_key: "SUA_CHAVE_AQUI",
+      subject: "Solicitãão de análise – Edital PGFN 6/2026",
+      from_name: get('nome'),
+      email: get('email'),
+      phone: get('telefone'),
+      message:
+        `Nome: ${get('nome')}\n` +
+        `WhatsApp / telefone: ${get('telefone')}\n` +
+        `E-mail: ${get('email')}\n` +
+        `Tipo de contribuinte: ${get('tipo')}\n` +
+        `Faixa do débito: ${get('faixa')}`
+    };
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSent(true);
+      } else {
+        alert("Erro ao enviar. Tente novamente ou entre em contato pelo WhatsApp.");
+      }
+    } catch (err) {
+      alert("Erro de conexão. Tente novamente.");
+    }
   }
-
   if (sent) {
     return (
       <div className="lp-formcard">
