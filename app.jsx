@@ -26,7 +26,7 @@ function LeadForm({ c, variant }) {
     const f = e.target;
     const get = (n) => (f.elements[n] && f.elements[n].value || '').trim();
     const payload = {
-      access_key: "SUA_CHAVE_AQUI",
+      access_key: "31c912e6-37e4-498b-b4ef-200a0c8f6cab",
       subject: "Solicitação de análise – Edital PGFN 6/2026",
       from_name: get('nome'),
       email: get('email'),
