@@ -1,0 +1,318 @@
+/* =============================================================
+   Sitorski Lins Advogados — Design System
+   colors + type tokens, semantic classes, base resets.
+   Import from: <link rel="stylesheet" href="colors_and_type.css">
+   Lucide icons (CDN, recommended):
+     <script src="https://unpkg.com/lucide@latest"></script>
+   ============================================================= */
+
+/* ---------- Webfonts ----------
+   Real brand faces are now in fonts/. See fonts/fonts.md.
+*/
+@font-face {
+  font-family: 'Bahnschrift';
+  src: url('fonts/bahnschrift.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('fonts/HelveticaNowDisplay-Light.ttf') format('truetype');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('fonts/HelveticaNowDisplay-Medium.ttf') format('truetype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('fonts/HelveticaNowDisplay-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('fonts/HelveticaNowDisplay-Black.ttf') format('truetype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Myriad Pro';
+  src: url('fonts/MyriadPro-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Orator Std';
+  src: url('fonts/OratorStd.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* ---------- Brand colors ---------- */
+  --slk-blue:        #113E61;   /* azul principal — solidez, honra */
+  --slk-blue-deep:   #0C2E48;   /* hover / pressed */
+  --slk-blue-soft:   #1F5582;   /* lift / accent */
+  --slk-copper:      #A78973;   /* cobre — elegância, primor */
+  --slk-copper-deep: #8E7361;
+  --slk-copper-soft: #C9B0A0;
+
+  /* ---------- Neutrals (warm) ---------- */
+  --slk-cream:       #F6F2EC;   /* default warm canvas */
+  --slk-cream-2:     #ECE5DA;   /* sectioned cream */
+  --slk-paper:       #FFFFFF;
+  --slk-ink:         #0E0E0E;   /* negative-only logo */
+  --slk-fg-1:        #113E61;   /* primary text -> blue */
+  --slk-fg-2:        #4A5A6B;   /* secondary text */
+  --slk-fg-3:        #7A8694;   /* tertiary, captions */
+  --slk-line:        rgba(167, 137, 115, 0.25);   /* copper hairline */
+  --slk-line-strong: rgba(17, 62, 97, 0.18);
+
+  /* ---------- Semantic ---------- */
+  --slk-bg:           var(--slk-cream);
+  --slk-bg-paper:     var(--slk-paper);
+  --slk-bg-inverse:   var(--slk-blue);
+  --slk-fg-on-blue:   var(--slk-paper);
+  --slk-accent:       var(--slk-copper);
+
+  /* ---------- Type families ---------- */
+  --slk-font-display: 'Bahnschrift', 'DIN Alternate', system-ui, sans-serif;
+  --slk-font-body:    'Helvetica Now Display', 'Helvetica Neue', Arial, sans-serif;
+  --slk-font-stationery: 'Orator Std', 'Helvetica Now Display', monospace;
+  --slk-font-secondary:  'Myriad Pro', 'Helvetica Now Display', sans-serif;
+  --slk-font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ---------- Type scale (display) ----------
+     Display is condensed; sizes are larger than body counterparts. */
+  --slk-display-1:   clamp(56px, 8vw, 112px);   /* hero */
+  --slk-display-2:   clamp(40px, 5.5vw, 72px);  /* page title */
+  --slk-display-3:   clamp(28px, 3.5vw, 44px);  /* section title */
+  --slk-eyebrow:     14px;   /* tracked-out tag above titles */
+
+  /* ---------- Type scale (body) ---------- */
+  --slk-h1:          40px;
+  --slk-h2:          28px;
+  --slk-h3:          22px;
+  --slk-h4:          18px;
+  --slk-body:        16px;
+  --slk-body-sm:     14px;
+  --slk-caption:     12px;
+
+  /* ---------- Tracking ----------
+     The brand's signature is wide-tracked uppercase. */
+  --slk-track-tight:    -0.01em;
+  --slk-track-normal:   0;
+  --slk-track-wide:     0.08em;
+  --slk-track-wider:    0.18em;
+  --slk-track-signature: 0.32em;   /* the SITORSKI / section-title tracking */
+
+  /* ---------- Spacing ---------- */
+  --slk-space-1:  4px;
+  --slk-space-2:  8px;
+  --slk-space-3:  12px;
+  --slk-space-4:  16px;
+  --slk-space-5:  24px;
+  --slk-space-6:  32px;
+  --slk-space-7:  48px;
+  --slk-space-8:  64px;
+  --slk-space-9:  96px;
+  --slk-space-10: 128px;
+
+  /* ---------- Radii ---------- */
+  --slk-radius-sm: 4px;
+  --slk-radius-md: 8px;
+  --slk-radius-lg: 12px;
+  --slk-radius-pill: 999px;     /* avoid except for avatars */
+
+  /* ---------- Shadows ---------- */
+  --slk-shadow-sm: 0 1px 2px rgba(17, 62, 97, 0.06);
+  --slk-shadow-md: 0 4px 16px rgba(17, 62, 97, 0.08);
+  --slk-shadow-lg: 0 12px 32px rgba(17, 62, 97, 0.12);
+
+  /* ---------- Motion ---------- */
+  --slk-ease-out:   cubic-bezier(0.22, 0.61, 0.36, 1);
+  --slk-ease-in:    cubic-bezier(0.55, 0.06, 0.68, 0.19);
+  --slk-dur-fast:   160ms;
+  --slk-dur-base:   240ms;
+  --slk-dur-slow:   320ms;
+
+  /* ---------- Layout ---------- */
+  --slk-container: 1180px;
+  --slk-gutter:    32px;
+}
+
+/* ============ Base ============ */
+html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  margin: 0;
+  background: var(--slk-bg);
+  color: var(--slk-fg-1);
+  font-family: var(--slk-font-body);
+  font-size: var(--slk-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: var(--slk-blue); text-decoration: none; transition: color var(--slk-dur-fast) var(--slk-ease-out); }
+a:hover { color: var(--slk-copper); }
+::selection { background: var(--slk-copper-soft); color: var(--slk-blue); }
+
+/* ============ Semantic typography ============ */
+
+/* Eyebrow — the brand's signature wide-tracked uppercase tag */
+.slk-eyebrow {
+  font-family: var(--slk-font-display);
+  font-weight: 400;
+  font-size: var(--slk-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--slk-track-signature);
+  color: var(--slk-copper);
+}
+
+.slk-display-1 {
+  font-family: var(--slk-font-display);
+  font-weight: 500;
+  font-size: var(--slk-display-1);
+  line-height: 1.02;
+  letter-spacing: var(--slk-track-tight);
+  color: var(--slk-blue);
+  margin: 0;
+}
+.slk-display-2 {
+  font-family: var(--slk-font-display);
+  font-weight: 500;
+  font-size: var(--slk-display-2);
+  line-height: 1.05;
+  letter-spacing: var(--slk-track-tight);
+  color: var(--slk-blue);
+  margin: 0;
+}
+.slk-display-3 {
+  font-family: var(--slk-font-display);
+  font-weight: 500;
+  font-size: var(--slk-display-3);
+  line-height: 1.1;
+  color: var(--slk-blue);
+  margin: 0;
+}
+.slk-section-title {
+  font-family: var(--slk-font-display);
+  font-weight: 400;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: var(--slk-track-signature);
+  color: var(--slk-blue);
+  margin: 0;
+}
+
+h1 { font-family: var(--slk-font-display); font-weight: 500; font-size: var(--slk-h1); line-height: 1.1; letter-spacing: var(--slk-track-tight); color: var(--slk-blue); margin: 0 0 var(--slk-space-4); }
+h2 { font-family: var(--slk-font-display); font-weight: 500; font-size: var(--slk-h2); line-height: 1.15; color: var(--slk-blue); margin: 0 0 var(--slk-space-4); }
+h3 { font-family: var(--slk-font-display); font-weight: 500; font-size: var(--slk-h3); line-height: 1.2; color: var(--slk-blue); margin: 0 0 var(--slk-space-3); }
+h4 { font-family: var(--slk-font-body); font-weight: 600; font-size: var(--slk-h4); line-height: 1.3; color: var(--slk-blue); margin: 0 0 var(--slk-space-3); letter-spacing: 0; }
+p  { margin: 0 0 var(--slk-space-4); }
+
+.slk-lead { font-size: 18px; line-height: 1.55; color: var(--slk-fg-2); }
+.slk-caption { font-size: var(--slk-caption); color: var(--slk-fg-3); letter-spacing: var(--slk-track-wide); text-transform: uppercase; }
+.slk-mono { font-family: var(--slk-font-mono); font-size: var(--slk-body-sm); }
+
+/* The wordmark descriptor — wide tracked uppercase, used everywhere */
+.slk-wordmark-desc {
+  font-family: var(--slk-font-display);
+  text-transform: uppercase;
+  letter-spacing: var(--slk-track-signature);
+  font-weight: 400;
+  font-size: 11px;
+  color: inherit;
+}
+
+/* ============ Surfaces ============ */
+.slk-surface-paper  { background: var(--slk-paper); color: var(--slk-fg-1); }
+.slk-surface-cream  { background: var(--slk-cream); color: var(--slk-fg-1); }
+.slk-surface-blue   { background: var(--slk-blue);  color: var(--slk-paper); }
+.slk-surface-blue * { color: inherit; }
+
+.slk-card {
+  background: var(--slk-paper);
+  border: 1px solid var(--slk-line);
+  border-radius: var(--slk-radius-md);
+  padding: var(--slk-space-6);
+}
+
+/* ============ Rules ============ */
+.slk-rule        { border: 0; border-top: 1px solid var(--slk-line); margin: var(--slk-space-6) 0; }
+.slk-rule-copper { width: 32px; height: 1px; background: var(--slk-copper); border: 0; margin: var(--slk-space-3) 0; }
+
+/* ============ Buttons ============ */
+.slk-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--slk-font-display);
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: var(--slk-track-wider);
+  padding: 14px 24px;
+  border-radius: var(--slk-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--slk-dur-fast) var(--slk-ease-out),
+              color var(--slk-dur-fast) var(--slk-ease-out),
+              border-color var(--slk-dur-fast) var(--slk-ease-out),
+              transform var(--slk-dur-fast) var(--slk-ease-out);
+}
+.slk-btn:active { transform: scale(0.98); }
+.slk-btn:focus-visible { outline: 2px solid var(--slk-copper); outline-offset: 2px; }
+
+.slk-btn-primary { background: var(--slk-blue); color: var(--slk-paper); }
+.slk-btn-primary:hover { background: var(--slk-blue-deep); }
+
+.slk-btn-outline { background: transparent; color: var(--slk-blue); border-color: var(--slk-blue); }
+.slk-btn-outline:hover { background: var(--slk-blue); color: var(--slk-paper); }
+
+.slk-btn-ghost { background: transparent; color: var(--slk-blue); padding: 14px 0; }
+.slk-btn-ghost:hover { color: var(--slk-copper); }
+
+/* ============ Form inputs ============ */
+.slk-input, .slk-textarea, .slk-select {
+  font-family: var(--slk-font-body);
+  font-size: var(--slk-body);
+  color: var(--slk-fg-1);
+  background: var(--slk-paper);
+  border: 1px solid var(--slk-line-strong);
+  border-radius: var(--slk-radius-sm);
+  padding: 12px 14px;
+  width: 100%;
+  transition: border-color var(--slk-dur-fast) var(--slk-ease-out),
+              box-shadow var(--slk-dur-fast) var(--slk-ease-out);
+}
+.slk-input:focus, .slk-textarea:focus, .slk-select:focus {
+  outline: none;
+  border-color: var(--slk-blue);
+  box-shadow: 0 0 0 3px rgba(17, 62, 97, 0.10);
+}
+.slk-label {
+  display: block;
+  font-family: var(--slk-font-display);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: var(--slk-track-wider);
+  color: var(--slk-fg-2);
+  margin-bottom: var(--slk-space-2);
+}
+
+/* ============ Layout helpers ============ */
+.slk-container {
+  max-width: var(--slk-container);
+  margin: 0 auto;
+  padding: 0 var(--slk-gutter);
+}
+.slk-section { padding: var(--slk-space-9) 0; }
+
+/* ============ Decorative wave ============
+   The brand's signature: wave bleeds off bottom-left (or right) of a page.
+   Use as <img class="slk-wave-bleed" src="assets/mark-only.png"> */
+.slk-wave-bleed {
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 220px; opacity: 0.9;
+  pointer-events: none;
+}
